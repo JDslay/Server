@@ -2,6 +2,8 @@ package com.example.server;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnStartServer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyFirstServer server = new MyFirstServer();
-                server.startListening();
+                MySecondServer server = new MySecondServer();
+                System.out.println("Anzahl aktiver Clients" + server.getClientCount());
             }
         });
     }

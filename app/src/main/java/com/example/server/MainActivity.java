@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MySecondServer server = new MySecondServer();
-                System.out.println("Anzahl aktiver Clients" + server.getClientCount());
+                //MyFirstServer server = new MyFirstServer();
+                //server.startListening();
+                //System.out.println("Anzahl aktiver Clients" + server.getClientCount());
             }
         });
     }

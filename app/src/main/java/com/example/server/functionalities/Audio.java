@@ -10,7 +10,9 @@ public class Audio extends AppCompatActivity {
 
 public void setVolume(int volLevel){
     AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
+    int maxLoud = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+    System.out.println("the max volume is" + maxLoud);
+    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volLevel, 0);
 
 }
     /* val audioManager = applicationContext.getSystemService(AUDIO_SERVICE) as AudioManager

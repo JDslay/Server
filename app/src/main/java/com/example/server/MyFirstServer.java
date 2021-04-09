@@ -1,5 +1,7 @@
 package com.example.server;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +14,7 @@ import java.util.Scanner;
 public class MyFirstServer {
 
     public void startListening() {
-        System.out.println("[Server] starten...");
+        Log.d("startListening: ","[Server] starten...");
         new Thread(new Runnable() {
             @Override
             public void run() {

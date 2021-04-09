@@ -20,7 +20,7 @@ public class MySecondServer extends Server {
        this.registerMethod("VOL_RAISE", new Executable() {
            @Override
            public void run(Datapackage pack, Socket socket) {
-            sendReply(socket, "OK");
+            sendReply(socket, "OK"); //send reply
                Audio audio = new Audio();
                audio.setVolume(5);
            }

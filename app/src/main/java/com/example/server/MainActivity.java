@@ -1,11 +1,17 @@
 package com.example.server;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //elephonyManager mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        //@SuppressLint("MissingPermission") String a = mTelephonyManager.getDeviceSoftwareVersion();
+                //.listen(mPhoneStatelistener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         Server01 server = new Server01(7000, audioManager);
         findViewById(R.id.btnStartServer).setOnClickListener(new View.OnClickListener() {

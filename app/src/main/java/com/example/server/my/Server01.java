@@ -2,6 +2,7 @@ package com.example.server.my;
 
 import android.content.Context;
 import android.media.AudioManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.example.server.functionalities.Audio;
@@ -34,14 +35,16 @@ public class Server01 {
     private Thread listeningThread;
     private ServerSocket serverSocket;
     private AudioManager audioManager;
+    private TelephonyManager telephonyManager;
     private ArrayList<RemoteClient> clients;
 
     /**
      * @param port The port to listen on
      */
-    public Server01(int port, AudioManager audioManager){
+    public Server01(int port, AudioManager audioManager, TelephonyManager telephonyManager){
         this.port = port;
         this.audioManager = audioManager;
+        this.telephonyManager = telephonyManager;
         this.clients = new ArrayList<RemoteClient>();
     }
 

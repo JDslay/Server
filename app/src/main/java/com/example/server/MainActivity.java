@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,50 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Measurements measurements = new Measurements(telephonyManager, locationManager);
+        Measurements measurements = new Measurements(telephonyManager, locationManager, this);
 
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
 
-        Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        Log.d(TAG, "onCreate: "+ loc.toString());
-
-        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
-            locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null){
-                        Log.d(TAG, "onSuccess: " + location.toString());
-                    }
-                    else{
-                        Log.d(TAG, "onSuccess: Location was null");
-                    }
-                }
-            });
-
-            locationTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e(TAG, "on failure: "+ e.getLocalizedMessage());
-                }
-            });
-        }
 
 
 
@@ -107,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnLocation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               tv.setText("Latitude is = " + loc.getLatitude());
+               tv.setText("Latitude is = " + measurements.getLatitude());
             }
         });
 

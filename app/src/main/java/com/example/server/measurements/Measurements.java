@@ -1,32 +1,25 @@
 package com.example.server.measurements;
 
-import android.app.IntentService;
-import android.content.Intent;
+import android.location.LocationManager;
+import android.telephony.SignalStrength;
+import android.telephony.TelephonyManager;
 
-import androidx.annotation.Nullable;
+public class Measurements {
 
-public class Measurements extends IntentService {
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
-    private static Measurements instance;
-    public static boolean isRunning;
+    private TelephonyManager telephonyManager;
+    private LocationManager locationManager;
 
-    public static  Measurements getInstance(){
-         isRunning = false;
-         instance = new Measurements("MyService");
-         return instance;
+    public Measurements(TelephonyManager telephonyManager, LocationManager locationManager) {
+        this.telephonyManager = telephonyManager;
+        this.locationManager = locationManager;
     }
 
-    private Measurements(String name) {
-        super(name);
+    public String getPhoneInfo(){
+        SignalStrength info = telephonyManager.getSignalStrength();
+        return info.toString();
     }
 
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        isRunning = true;
-
+    public double getLatitude(){
+        return 0;
     }
 }

@@ -15,6 +15,8 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.server.measurements.Measurements;
 import com.example.server.my.Server01;
 import com.google.android.gms.common.internal.GmsLogger;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -33,20 +35,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+        checkPermissions();
 
-        ActivityCompat.requestPermissions(this, permissions, 1001);
-
-
-        //
-        //double h = lo.getAltitude();
-
-
-        //@SuppressLint("MissingPermission") String a = mTelephonyManager.getDeviceSoftwareVersion();
-        //.listen(mPhoneStatelistener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Measurements measurements = new Measurements(telephonyManager, locationManager);
+
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -102,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnMeasure).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignalStrength info = telephonyManager.getSignalStrength();
-                tv.setText("Telephone Data = " + info.toString());
+                tv.setText("Telephone Data = " + measurements.getPhoneInfo());
             }
         });
 
@@ -130,4 +127,12 @@ public class MainActivity extends AppCompatActivity {
                                                             }
         );
     }
+
+    private void checkPermissions(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_FINE_LOCATION};
+            ActivityCompat.requestPermissions(this, permissions, 1001);
+        }
+    }
+
 }

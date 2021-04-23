@@ -35,16 +35,14 @@ public class Server01 {
     private Thread listeningThread;
     private ServerSocket serverSocket;
     private AudioManager audioManager;
-    private TelephonyManager telephonyManager;
     private ArrayList<RemoteClient> clients;
 
     /**
      * @param port The port to listen on
      */
-    public Server01(int port, AudioManager audioManager, TelephonyManager telephonyManager){
+    public Server01(int port, AudioManager audioManager){
         this.port = port;
         this.audioManager = audioManager;
-        this.telephonyManager = telephonyManager;
         this.clients = new ArrayList<RemoteClient>();
     }
 

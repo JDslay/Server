@@ -9,8 +9,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "measurement_table")
 public class Measurement {
-    @Nullable
-    public Bitmap img = null;
+    @Nullable public Bitmap img = null;
     public Long timeStamp = 0L;
     public double fieldStrength = 0.;
     @Nullable

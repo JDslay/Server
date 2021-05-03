@@ -8,19 +8,22 @@ import android.location.LocationManager;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+
+/**
+ * Uses the phone as measurement tool
+ * @author Jürgen Dieterle
+ * @version 1.0.0
+ */
 
 public class Measurements {
 
@@ -37,7 +40,8 @@ public class Measurements {
 
     public String getPhoneInfo(){
         SignalStrength info = telephonyManager.getSignalStrength();
-        return info.toString();
+        int cdmaDbm = info.getCdmaDbm();
+        return "CDMA in dBm sis: "+cdmaDbm;
     }
 
     public double getLatitude(){

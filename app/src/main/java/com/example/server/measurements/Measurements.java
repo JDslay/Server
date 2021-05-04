@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.telephony.CellSignalStrength;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,28 +40,41 @@ public class Measurements {
         this.context = context;
     }
 
+    /**
+     * Measures available signals from mobile station
+     * @return Info about available Signal Strengths
+     */
     public String getPhoneInfo(){
         SignalStrength info = telephonyManager.getSignalStrength();
-        int cdmaDbm = info.getCdmaDbm();
-        return "CDMA in dBm sis: "+cdmaDbm;
+        List<CellSignalStrength> cellSignalStrengths =  info.getCellSignalStrengths();
+        cellSignalStrengths.forEach(S -> Log.d(TAG, S.toString()));
+        return cellSignalStrengths.toString();
     }
 
+
+    /**
+     * get Latitude by locationmanager
+     * @return latitude
+     */
     public double getLatitude(){
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "nope ");
         }
         Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         Log.d(TAG, "onCreate: "+ loc.toString());
-
         return loc.getLatitude();
     }
 
+
+    /**
+     * get latitude by googles locationservices
+     * @return latitude
+     */
     public List<Location> getLatitudeByGooglePlay(){
         FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
         List<Location> locList = new ArrayList<Location>();
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
-
             locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
@@ -72,7 +87,6 @@ public class Measurements {
                     }
                 }
             });
-
             locationTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {

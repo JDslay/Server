@@ -9,14 +9,18 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "measurement_table")
 public class Measurement {
-    @Nullable public Bitmap img = null;
-    public Long timeStamp = 0L;
-    public double fieldStrength = 0.;
-    @Nullable
-    public Location location  = null;
 
     @PrimaryKey(autoGenerate = true)
-    @Nullable
     public int uid = 0;
+    public Bitmap img = null;
+    public Long timeStamp = 0L;
+    public double fieldStrength = 0.;
+    public double latitude  = 0.;
 
+    public Measurement(Bitmap img, Long timeStamp, double fieldStrength, double latitude) {
+        this.img = img;
+        this.timeStamp = timeStamp;
+        this.fieldStrength = fieldStrength;
+        this.latitude = latitude;
+    }
 }

@@ -15,7 +15,7 @@ public class Measurement {
     public Bitmap img = null;
     public Long timeStamp = 0L;
     public double fieldStrength = 0.;
-    public double latitude  = 0.;
+    public double latitude = 0.;
 
     public Measurement(Bitmap img, Long timeStamp, double fieldStrength, double latitude) {
         this.img = img;

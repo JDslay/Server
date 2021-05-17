@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         checkPermissions();
         Measurements measurements = initMeasurements();
 
+
         TextView infoBox = findViewById(R.id.results_text);
         View btnMeasure = findViewById(R.id.btnMeasure);
         View btnLocateMe = findViewById(R.id.btnLocation);

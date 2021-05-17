@@ -32,12 +32,15 @@ public class MainActivity extends AppCompatActivity {
         checkPermissions();
         Measurements measurements = initMeasurements();
 
-        TextView infoBox = findViewById(R.id.textView);
+        TextView infoBox = findViewById(R.id.results_text);
         View btnMeasure = findViewById(R.id.btnMeasure);
         View btnLocateMe = findViewById(R.id.btnLocation);
         View btnStartServer = findViewById(R.id.btnStartServer);
 
-        btnMeasure.setOnClickListener(v -> infoBox.setText("Telephone: " + measurements.getPhoneInfo()));
+        btnMeasure.setOnClickListener(v -> {
+            infoBox.setText("Telephone: " + measurements.getPhoneInfo());
+            findViewById(R.id.linearLayout_results).setVisibility(View.VISIBLE);
+        });
         btnLocateMe.setOnClickListener(v -> infoBox.setText("Latitude is = " + measurements.getLatitude()));
         btnStartServer.setOnClickListener(v -> {
             Intent intent = new Intent(this, ServerActivity.class);

@@ -7,4 +7,7 @@
     <string name="locate_me">Locate Me</string>
     <string name="results_field">Resultsfield</string>
     <string name="save_Button">SAVE</string>
+    <string name="serverlistening">Start Listening</string>
+    <string name="nbrClients">Number of Clients</string>
+    <string name="showClients">Show Clients</string>
 </resources>

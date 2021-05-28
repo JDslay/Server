@@ -18,8 +18,8 @@ public interface MeasurementDAO {
     @Delete
     void deleteMeasurement(Measurement measurement);
 
-    @Query("SELECT * FROM measurement_table ORDER BY timeStamp DESC")
-    LiveData<List<Measurement>>  getAllMeasurementsSortedByDate();
+    @Query("SELECT * FROM measurement_table")
+    List<Measurement>  getAllMeasurements();
 
     @Query("SELECT * FROM measurement_table ORDER BY fieldStrength DESC")
     LiveData<List<Measurement>>  getAllMeasurementsSortedByFieldStrength();

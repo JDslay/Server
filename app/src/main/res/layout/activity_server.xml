@@ -7,11 +7,9 @@
 
     <Button
         android:id="@+id/btnNbrClients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
         android:layout_marginBottom="16dp"
-        android:text="show clients"
-        android:textSize="15sp"
+        android:text="@string/showClients"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,8 +19,8 @@
         android:id="@+id/tvNbrClients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Number of Clients"
-        android:textSize="25dp"
+        android:text="@string/nbrClients"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,9 +29,8 @@
 
     <Button
         android:id="@+id/btnStartListening"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Listening"
+        style="@style/ButtonStyle"
+        android:text="@string/serverlistening"
         app:layout_constraintBottom_toTopOf="@+id/tvNbrClients"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

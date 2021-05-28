@@ -1,9 +1,5 @@
 package com.example.server.db;
 
-import android.graphics.Bitmap;
-import android.location.Location;
-
-import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -11,13 +7,13 @@ import androidx.room.PrimaryKey;
 public class Measurement {
 
     @PrimaryKey(autoGenerate = true)
-    public int uid = 0;
+    public int uid;
     //public Bitmap img = null;
-    public Long timeStamp = 0L;
-    public double fieldStrength = 0.;
-    public double latitude = 0.;
+    public double timeStamp = 11;
+    public double fieldStrength = 1;
+    public double latitude = 2;
 
-    public Measurement(Long timeStamp, double fieldStrength, double latitude) {
+    public Measurement(double timeStamp, double fieldStrength, double latitude) {
         //this.img = img;
         this.timeStamp = timeStamp;
         this.fieldStrength = fieldStrength;

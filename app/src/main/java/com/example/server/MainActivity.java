@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
         btnSave.setOnClickListener(v -> {
             Thread thread = new Thread(){
                 public void run(){
-                    MeasurementDatabase db = Room.databaseBuilder(getApplicationContext(),
-                            MeasurementDatabase.class, "database-name").build();
+                    MeasurementDatabase db = MeasurementDatabase.getInstance(getApplicationContext());
                     MeasurementDAO measurementDao = db.measurementDAO();
                     measurementDao.insertMeasurement(new Measurement(2,4,5));
                     measurementDao.insertMeasurement(new Measurement(3,5,6));
